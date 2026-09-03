@@ -25,6 +25,7 @@ class TransformsClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     async def delete(
         self,
+        *,
         id: Any,
         params: Any = None,
         headers: Any = None,
@@ -36,13 +37,12 @@ class TransformsClient(NamespacedClient):
         :arg id: Transform to delete
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -60,6 +60,7 @@ class TransformsClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     async def explain(
         self,
+        *,
         id: Any,
         params: Any = None,
         headers: Any = None,
@@ -71,13 +72,12 @@ class TransformsClient(NamespacedClient):
         :arg id: Transform to explain
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -95,6 +95,7 @@ class TransformsClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     async def get(
         self,
+        *,
         id: Any,
         params: Any = None,
         headers: Any = None,
@@ -106,13 +107,12 @@ class TransformsClient(NamespacedClient):
         :arg id: Transform to access
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -130,6 +130,7 @@ class TransformsClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     async def preview(
         self,
+        *,
         body: Any = None,
         params: Any = None,
         headers: Any = None,
@@ -140,13 +141,12 @@ class TransformsClient(NamespacedClient):
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -170,6 +170,7 @@ class TransformsClient(NamespacedClient):
     )
     async def put(
         self,
+        *,
         id: Any,
         body: Any = None,
         params: Any = None,
@@ -183,17 +184,16 @@ class TransformsClient(NamespacedClient):
         :arg id: Transform to create/update
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
         :arg if_primary_term: Only perform the operation if the document
             has this primary term.
         :arg if_seq_no: Only perform the operation if the document has
             this sequence number.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -223,6 +223,7 @@ class TransformsClient(NamespacedClient):
     )
     async def search(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
@@ -232,14 +233,13 @@ class TransformsClient(NamespacedClient):
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
         :arg from_: The starting transform to return. Default is `0`.
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg search: The search term to use to filter results.
         :arg size: Specifies the number of transforms to return. Default
@@ -261,6 +261,7 @@ class TransformsClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     async def start(
         self,
+        *,
         id: Any,
         params: Any = None,
         headers: Any = None,
@@ -272,13 +273,12 @@ class TransformsClient(NamespacedClient):
         :arg id: Transform to start
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -296,6 +296,7 @@ class TransformsClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     async def stop(
         self,
+        *,
         id: Any,
         params: Any = None,
         headers: Any = None,
@@ -307,13 +308,12 @@ class TransformsClient(NamespacedClient):
         :arg id: Transform to stop
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.

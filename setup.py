@@ -54,12 +54,11 @@ packages = [
     if package == MODULE_DIR or package.startswith(MODULE_DIR + ".")
 ]
 install_requires = [
-    'urllib3>=1.26.19,<1.27 ; python_version < "3.10"',
-    'urllib3>=1.26.19,!=2.2.0,!=2.2.1,<3 ; python_version >= "3.10"',
+    'urllib3>=1.26.20,<1.27 ; python_version < "3.10"',
+    'urllib3>=2.7.0,<3 ; python_version >= "3.10"',
     "requests>=2.32.0, <3.0.0",
     "python-dateutil",
     "certifi>=2024.07.04",
-    "Events",
 ]
 tests_require = [
     "requests>=2.0.0, <3.0.0",
@@ -70,9 +69,10 @@ tests_require = [
     "pytz",
     "botocore",
     "pytest-mock<4.0.0",
+    "opensearch-protobufs==1.6.0",
 ]
 
-async_require = ["aiohttp>=3.9.4,<4"]
+async_require = ["aiohttp>=3.12.14,<4"]
 
 docs_require = ["sphinx", "sphinx_rtd_theme", "myst_parser", "sphinx_copybutton"]
 generate_require = ["black>=24.3.0", "jinja2"]
@@ -104,15 +104,13 @@ setup(
         "Intended Audience :: Developers",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
-    python_requires=">=3.8, <4",
+    python_requires=">=3.10, <4",
     install_requires=install_requires,
     test_suite="test_opensearchpy.run_tests.run_all",
     tests_require=tests_require,
@@ -120,6 +118,7 @@ setup(
         "develop": tests_require + docs_require + generate_require,
         "docs": docs_require + async_require,
         "async": async_require,
+        "grpc": ["opensearch-protobufs==1.6.0"],
         "kerberos": ["requests_kerberos"],
     },
 )

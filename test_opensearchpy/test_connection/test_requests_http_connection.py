@@ -222,6 +222,10 @@ class TestRequestsHttpConnection(TestCase):
         con = RequestsHttpConnection(http_auth=["username", "secret"])
         self.assertEqual(("username", "secret"), con.session.auth)
 
+    def test_proxies(self) -> None:
+        con = RequestsHttpConnection(proxies={"http": "http://localhost:8118"})
+        self.assertEqual({"http": "http://localhost:8118"}, con.session.proxies)
+
     def test_repr(self) -> None:
         con = self._get_mock_connection({"host": "opensearchpy.com", "port": 443})
         self.assertEqual(
@@ -475,9 +479,36 @@ class TestRequestsHttpConnection(TestCase):
             ).prepare()
             auth(prepared_request)
 
-            mock_aws_request.assert_called_with(
-                method="GET", url="http://otherhost:443/?foo=bar", data=None
-            )
+            mock_aws_request.assert_called_once()
+            call_kwargs = mock_aws_request.call_args[1]
+            self.assertEqual(call_kwargs["method"], "GET")
+            self.assertEqual(call_kwargs["url"], "http://otherhost:443/?foo=bar")
+            self.assertIsNone(call_kwargs["data"])
+            self.assertIn("host", call_kwargs["headers"])
+            self.assertEqual(call_kwargs["headers"]["host"], "otherhost:443")
+
+    def test_aws_signer_signs_custom_headers(self) -> None:
+        region = "us-west-2"
+        service = "aoss"
+
+        import requests
+
+        from opensearchpy.helpers.signer import RequestsAWSV4SignerAuth
+
+        auth = RequestsAWSV4SignerAuth(self.mock_session(), region, service)
+        prepared_request = requests.Request(
+            "GET",
+            "http://localhost",
+            headers={
+                "x-amz-aoss-collection-id": "col-id",
+                "x-amz-aoss-collection-name": "col-name",
+            },
+        ).prepare()
+        auth(prepared_request)
+
+        auth_header = prepared_request.headers["Authorization"]
+        self.assertIn("x-amz-aoss-collection-id", auth_header)
+        self.assertIn("x-amz-aoss-collection-name", auth_header)
 
     def test_aws_signer_as_http_auth(self) -> None:
         region = "us-west-2"
@@ -514,6 +545,42 @@ class TestRequestsHttpConnection(TestCase):
         self.assertIn("Authorization", prepared_request.headers)
         self.assertIn("X-Amz-Date", prepared_request.headers)
         self.assertIn("X-Amz-Security-Token", prepared_request.headers)
+
+    def test_aws_signer_signs_content_sha256(self) -> None:
+        region = "us-west-2"
+
+        import requests
+
+        from opensearchpy.helpers.signer import RequestsAWSV4SignerAuth
+
+        auth = RequestsAWSV4SignerAuth(self.mock_session(), region)
+        prepared_request = requests.Request("GET", "http://localhost").prepare()
+        auth(prepared_request)
+
+        self.assertIn("X-Amz-Content-SHA256", prepared_request.headers)
+        auth_header = prepared_request.headers["Authorization"]
+        signed_headers = auth_header.split("SignedHeaders=")[1].split(",")[0]
+        self.assertIn("x-amz-content-sha256", signed_headers)
+
+    def test_aws_signer_preserves_caller_content_sha256(self) -> None:
+        import requests
+
+        from opensearchpy.helpers.signer import RequestsAWSV4SignerAuth
+
+        auth = RequestsAWSV4SignerAuth(self.mock_session(), "us-west-2")
+        prepared_request = requests.Request(
+            "GET",
+            "http://localhost",
+            headers={"X-Amz-Content-SHA256": "UNSIGNED-PAYLOAD"},
+        ).prepare()
+        auth(prepared_request)
+
+        self.assertEqual(
+            prepared_request.headers["X-Amz-Content-SHA256"], "UNSIGNED-PAYLOAD"
+        )
+        auth_header = prepared_request.headers["Authorization"]
+        signed_headers = auth_header.split("SignedHeaders=")[1].split(",")[0]
+        self.assertIn("x-amz-content-sha256", signed_headers)
 
     @patch("opensearchpy.helpers.signer.AWSV4Signer.sign")
     def test_aws_signer_signs_with_query_string(self, mock_sign: Any) -> None:
@@ -589,7 +656,7 @@ class TestRequestsHttpConnection(TestCase):
             verify_certs=True,
             connection_class=MockConnection,
         )
-        client.index("index", {"test": "data"}, id=doc_id)
+        client.index(index="index", body={"test": "data"}, id=doc_id)
         self.assertEqual(
             signed_url,
             sent_url,

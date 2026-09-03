@@ -43,6 +43,7 @@ logger = logging.getLogger("opensearch")
 logger.addHandler(logging.NullHandler())
 
 from .client import OpenSearch
+from .client.grpc_client import OpenSearchGrpc
 from .connection import (
     Connection,
     RequestsHttpConnection,
@@ -92,7 +93,6 @@ from .helpers.field import (
     CustomField,
     Date,
     DateRange,
-    DenseVector,
     Double,
     DoubleRange,
     Field,
@@ -107,6 +107,7 @@ from .helpers.field import (
     IpRange,
     Join,
     Keyword,
+    KnnVector,
     Long,
     LongRange,
     Murmur3,
@@ -142,6 +143,7 @@ warnings.simplefilter("default", category=OpenSearchDeprecationWarning, append=T
 
 __all__ = [
     "OpenSearch",
+    "OpenSearchGrpc",
     "Transport",
     "ConnectionPool",
     "ConnectionSelector",
@@ -178,7 +180,7 @@ __all__ = [
     "Date",
     "DateHistogramFacet",
     "DateRange",
-    "DenseVector",
+    "KnnVector",
     "Document",
     "Double",
     "DoubleRange",

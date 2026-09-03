@@ -3,15 +3,97 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
+- Add gRPC translation layer with `BulkRequestProtoBuilder` and `ResponseConverter` for bulk operations ([#1058](https://github.com/opensearch-project/opensearch-py/pull/1058))
+- Add JWT/Bearer token authentication support for gRPC transport via `BearerTokenInterceptor` ([#1090](https://github.com/opensearch-project/opensearch-py/pull/1090))
+- Add gRPC transport for bulk operations with `OpenSearchGrpc` client and `GrpcTransport` ([#1078](https://github.com/opensearch-project/opensearch-py/pull/1078))
+- Add TLS/mTLS and Basic authentication support for gRPC transport with `use_ssl`, `ca_certs`, `client_cert`, `client_key`, `ssl_context`, `ssl_assert_hostname`, and `http_auth` ([#1087](https://github.com/opensearch-project/opensearch-py/pull/1087))
+- Add gRPC ML streaming translation layer for ML Commons `PredictModelStream` / `ExecuteAgentStream` APIs ([#1096](https://github.com/opensearch-project/opensearch-py/pull/1096))
+- Added support for `trust_env` to `AsyncHttpConnection` ([886](https://github.com/opensearch-project/opensearch-py/pull/886)) 
+### Updated APIs
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fix `UnicodeEncodeError` on surrogate/emoji characters in bulk chunk sizing by passing `surrogatepass` error handler ([#1086](https://github.com/opensearch-project/opensearch-py/pull/1086))
+### Security
+- Refresh `samples/` and `benchmarks/` poetry locks and pin fixed transitive floors to clear all outstanding dependency CVE findings: aiohttp `>=3.14.1` (CVE-2026-54273..54280 et al.), urllib3 `>=2.7.0` (CVE-2025-50181/-50182/-66418/-66471, CVE-2026-21441/-44431/-44432), requests `>=2.33.0` (CVE-2024-47081, CVE-2026-25645), and idna `>=3.18` (CVE-2026-45409) ([#1082](https://github.com/opensearch-project/opensearch-py/pull/1082))
+### Dependencies
+- Refresh `samples/` poetry lock (aiohttp 3.14.1, urllib3 2.7.0, requests 2.34.2, idna 3.18) and re-refresh `benchmarks/` poetry lock (aiohttp 3.14.1, urllib3 2.7.0, idna 3.18) to clear CVE findings ([#1082](https://github.com/opensearch-project/opensearch-py/pull/1082))
+- Refresh `benchmarks/` poetry lock to pick up aiohttp 3.13.5, urllib3 2.6.3, requests 2.33.1, pygments 2.20.0 (clears Mend CVE findings) ([#1046](https://github.com/opensearch-project/opensearch-py/pull/1046))
+- Removed dependency on [Events](https://pypi.org/project/Events/) ([#1060](https://github.com/opensearch-project/opensearch-py/pull/1060))
+
+## [3.2.0]
+### Added
+- Add dependency on opensearch-protobufs to provide client libraries for gRPC transport ([#977](https://github.com/opensearch-project/opensearch-py/pull/977))
+- Add ML Commons plugin documentation ([#992](https://github.com/opensearch-project/opensearch-py/pull/992))
+### Updated APIs
+- Updated opensearch-py APIs to reflect [opensearch-api-specification@2954600](https://github.com/opensearch-project/opensearch-api-specification/commit/2954600ddafbd98a1ab9f530054bb1b62380a92a)
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fixed `AWSV4Signer.sign()` not passing custom headers to `AWSRequest`, causing `x-amz-*` headers to be excluded from SigV4 signature ([#1034](https://github.com/opensearch-project/opensearch-py/issues/1034))
+- Fixed `AWSV4Signer.sign()` not setting `X-Amz-Content-SHA256` before `SigV4Auth.add_auth()`, causing the header to be absent from `SignedHeaders` in the `Authorization` header. The fix uses a guarded assignment that preserves caller-provided values (e.g., `UNSIGNED-PAYLOAD`, precomputed hashes) ([#1038](https://github.com/opensearch-project/opensearch-py/issues/1038), [#1039](https://github.com/opensearch-project/opensearch-py/pull/1039))
+- Fixed the `linkchecker` CI step ([#987](https://github.com/opensearch-project/opensearch-py/pull/987))
+### Security
+### Dependencies
+- Bump `pytest-asyncio` from <=1.2.0 to <=1.3.0 ([#984](https://github.com/opensearch-project/opensearch-py/pull/984))
+- Bump `actions/checkout` from 5 to 6 ([#986](https://github.com/opensearch-project/opensearch-py/pull/986))
+- Bump `codecov/codecov-action` from 4 to 5 ([#985](https://github.com/opensearch-project/opensearch-py/pull/985))
+- Bump `actions/upload-artifact` from 5 to 6 ([#989](https://github.com/opensearch-project/opensearch-py/pull/989))
+- Bump `actions/download-artifact` from 6 to 7 ([#988](https://github.com/opensearch-project/opensearch-py/pull/988))
+- Bump `peter-evans/create-pull-request` from 7 to 8 ([#990](https://github.com/opensearch-project/opensearch-py/pull/990))
+- Bump `opensearch-protobufs` from 0.19.0 to 1.2.0 ([#1000](https://github.com/opensearch-project/opensearch-py/pull/1000))
+
+
+## [3.1.0]
+### Added
+### Updated APIs
+- Updated opensearch-py APIs to reflect [opensearch-api-specification@eaf4bf8](https://github.com/opensearch-project/opensearch-api-specification/commit/eaf4bf830fac71c6800c3fb2b6293de0641f1ca7)
+- Updated opensearch-py APIs to reflect [opensearch-api-specification@3be80d7](https://github.com/opensearch-project/opensearch-api-specification/commit/3be80d700cccc60093ad6265a9582572c0b1e9f4)
+- Updated opensearch-py APIs to reflect [opensearch-api-specification@89c586c](https://github.com/opensearch-project/opensearch-api-specification/commit/89c586cfe65584f789e8fccc5f6c416cee1e8b3b)
+- Updated opensearch-py APIs to reflect [opensearch-api-specification@cac8c5d](https://github.com/opensearch-project/opensearch-api-specification/commit/cac8c5d8ab39c702c6c428cfdc3a3a710cf2c0b0)
+- Updated opensearch-py APIs to reflect [opensearch-api-specification@578a78d](https://github.com/opensearch-project/opensearch-api-specification/commit/578a78dcec746e81da88f81ad442ab1836db7694)
+### Changed
+- Rename `DenseVector` field type to `KnnVector` ([925](https://github.com/opensearch-project/opensearch-py/pull/925))
+### Deprecated
+- Deprecate python 3.8 and 3.9 support which are end of life. ([966](https://github.com/opensearch-project/opensearch-py/pull/966)) 
+### Removed
+### Fixed
+- Moved client tests to dedicated files to ensure they are run ([944](https://github.com/opensearch-project/opensearch-py/pull/944))
+- Fix Async request signer ([932](https://github.com/opensearch-project/opensearch-py/pull/932))
+- Fix memory leak in parallel_bulk ([981](https://github.com/opensearch-project/opensearch-py/pull/981))
+
+### Security
+### Dependencies
+- Bumps `aiohttp` from >=3.9.4,<4 to >=3.10.11,<4 ([#920](https://github.com/opensearch-project/opensearch-py/pull/920))
+- Bumps `aiohttp` from >=3.10.11 to >=3.12.14 ([#966](https://github.com/opensearch-project/opensearch-py/pull/966))
+- Bump `pytest-asyncio` from <=0.25.1 to <=1.2.0 ([#936](https://github.com/opensearch-project/opensearch-py/pull/936), [#950](https://github.com/opensearch-project/opensearch-py/pull/950))
+- Bumps `lycheeverse/lychee-action` from 1.9.3 to 2.7.0 ([#946](https://github.com/opensearch-project/opensearch-py/pull/946), [#980](https://github.com/opensearch-project/opensearch-py/pull/980))
+- Bump `actions/download-artifact` from 4 to 6 ([#957](https://github.com/opensearch-project/opensearch-py/pull/957), [#968](https://github.com/opensearch-project/opensearch-py/pull/968))
+- Bump `actions/cache` from 3 to 4 ([#958](https://github.com/opensearch-project/opensearch-py/pull/958))
+- Bump `peter-evans/create-pull-request` from 6 to 7 ([#959](https://github.com/opensearch-project/opensearch-py/pull/959))
+- Bump `actions/setup-python` from 5 to 6 ([#961](https://github.com/opensearch-project/opensearch-py/pull/961))
+- Bump `dangoslen/dependabot-changelog-helper` from 3 to 4 ([#960](https://github.com/opensearch-project/opensearch-py/pull/960))
+- Bump `stefanzweifel/git-auto-commit-action` from 5 to 7 ([#962](https://github.com/opensearch-project/opensearch-py/pull/962))
+- Bump `actions/checkout` from 4 to 5 ([#967](https://github.com/opensearch-project/opensearch-py/pull/967))
+- Bump `VachaShah/backport` from 1.1.4 to 2.2.0 ([#969](https://github.com/opensearch-project/opensearch-py/pull/969))
+- Bump `actions/github-script` from 7 to 8 ([#973](https://github.com/opensearch-project/opensearch-py/pull/973))
+- Bump `actions/upload-artifact` from 4 to 5 ([#972](https://github.com/opensearch-project/opensearch-py/pull/972))
+- Bump `actions/setup-java` from 4 to 5 ([#974](https://github.com/opensearch-project/opensearch-py/pull/974))
+
+## [3.0.0]
+### Added
 - Added option to pass custom headers to 'AWSV4SignerAsyncAuth' ([863](https://github.com/opensearch-project/opensearch-py/pull/863))
 - Added sync and async sample that uses `search_after` parameter ([859](https://github.com/opensearch-project/opensearch-py/pull/859))
-- Added support for `trust_env` to `AsyncHttpConnection` ([886](https://github.com/opensearch-project/opensearch-py/pull/886))
-
+- Enforced mandatory keyword-only arguments for calling auto-generated OpenSearch-py APIs ([#907](https://github.com/opensearch-project/opensearch-py/pull/907))
 ### Updated APIs
+- Updated opensearch-py APIs to reflect [opensearch-api-specification@d4eab1a](https://github.com/opensearch-project/opensearch-api-specification/commit/d4eab1a2e59db2b28e58a83df29bd72fc99c71b4)
 ### Changed
 - Small refactor of AWS Signer classes for both sync and async clients ([866](https://github.com/opensearch-project/opensearch-py/pull/866))
 - Small refactor to fix overwriting the module files when generating apis ([874](https://github.com/opensearch-project/opensearch-py/pull/874))
 - Fixed a "type ignore" lint error
+- Added support for explicit proxy to RequestsHttpConnection ([908](https://github.com/opensearch-project/opensearch-py/pull/908))
 ### Deprecated
 ### Removed
 ### Fixed
@@ -268,7 +350,9 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fixed link checker failing due to relative link ([#760](https://github.com/opensearch-project/opensearch-py/pull/760))
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/opensearch-py/compare/v2.8.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/opensearch-py/compare/v3.1.0...HEAD
+[3.1.0]: https://github.com/opensearch-project/opensearch-py/compare/v3.0.0...v3.1.0
+[3.0.0]: https://github.com/opensearch-project/opensearch-py/compare/v2.8.0...v3.0.0
 [2.8.0]: https://github.com/opensearch-project/opensearch-py/compare/v2.7.1...v2.8.0
 [2.7.1]: https://github.com/opensearch-project/opensearch-py/compare/v2.7.0...v2.7.1
 [2.7.0]: https://github.com/opensearch-project/opensearch-py/compare/v2.6.0...v2.7.0

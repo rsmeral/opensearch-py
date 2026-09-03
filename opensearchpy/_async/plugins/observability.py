@@ -25,6 +25,7 @@ class ObservabilityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     async def create_object(
         self,
+        *,
         body: Any = None,
         params: Any = None,
         headers: Any = None,
@@ -35,13 +36,12 @@ class ObservabilityClient(NamespacedClient):
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -57,6 +57,7 @@ class ObservabilityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     async def delete_object(
         self,
+        *,
         object_id: Any,
         params: Any = None,
         headers: Any = None,
@@ -65,16 +66,15 @@ class ObservabilityClient(NamespacedClient):
         Deletes specific observability object specified by ID.
 
 
-        :arg object_id: The ID of the Observability Object.
+        :arg object_id: The ID of the observability object to delete.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -100,6 +100,7 @@ class ObservabilityClient(NamespacedClient):
     )
     async def delete_objects(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
@@ -109,17 +110,16 @@ class ObservabilityClient(NamespacedClient):
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg objectId: The ID of a single Observability Object to
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg objectId: The ID of a single observability object to
             delete.
-        :arg objectIdList: A comma-separated list of Observability
-            Object IDs to delete.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg objectIdList: A comma-separated list of observability
+            object IDs to delete.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -131,22 +131,22 @@ class ObservabilityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     async def get_localstats(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Retrieves Local Stats of all observability objects.
+        Retrieves local stats of all observability objects.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -161,6 +161,7 @@ class ObservabilityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     async def get_object(
         self,
+        *,
         object_id: Any,
         params: Any = None,
         headers: Any = None,
@@ -169,16 +170,15 @@ class ObservabilityClient(NamespacedClient):
         Retrieves specific observability object specified by ID.
 
 
-        :arg object_id: The ID of the Observability Object.
+        :arg object_id: The ID of the observability object to retrieve.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -196,6 +196,7 @@ class ObservabilityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     async def list_objects(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
@@ -205,13 +206,12 @@ class ObservabilityClient(NamespacedClient):
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -223,6 +223,7 @@ class ObservabilityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     async def update_object(
         self,
+        *,
         object_id: Any,
         body: Any = None,
         params: Any = None,
@@ -232,16 +233,15 @@ class ObservabilityClient(NamespacedClient):
         Updates an existing observability object.
 
 
-        :arg object_id: The ID of the Observability Object.
+        :arg object_id: The ID of the observability object to update.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.

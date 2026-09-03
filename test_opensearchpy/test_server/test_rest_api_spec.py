@@ -30,12 +30,13 @@ Dynamically generated set of TestCases based on set of yaml files describing
 some integration tests. These files are shared among all official OpenSearch
 clients.
 """
+
 import io
 import os
 import re
 import warnings
 import zipfile
-from typing import Any
+from typing import Any, List
 
 import pytest
 import urllib3
@@ -72,18 +73,35 @@ IMPLEMENTED_FEATURES = {
 # broken YAML tests on some releases
 SKIP_TESTS = {
     # fail on 1.x
+    "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/cat/cluster_manager/10_basic[0]",
+    "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/cat/cluster_manager/10_basic[1]",
+    "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/cat/health/10_basic[1]",
     "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/cat/indices/10_basic[2]",
     "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/cat/nodeattrs/10_basic[1]",
+    "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/cat/repositories/10_basic[1]",
+    "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/cat/repositories/10_basic[2]",
     "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/cluster/health/10_basic[6]",
+    "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/cluster/health/10_basic[7]",
     "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/cluster/health/20_request_timeout[0]",
     "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/cluster/health/20_request_timeout[1]",
     "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/cluster/put_settings/10_basic[2]",
+    "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/cluster/reroute/10_basic[1]",
+    "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/cluster/reroute/20_response_filtering[2]",
+    "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/cluster/state/10_basic[2]",
+    "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/cluster/state/20_filtering[10]",
+    "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/cluster/stats/10_basic[4]",
     "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/indices/put_alias/all_path_options[5]",
     "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/indices/put_alias/all_path_options[6]",
+    "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/nodes/info/10_basic[2]",
     "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/search/340_doc_values_field[0]",
     "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/search/340_doc_values_field[1]",
     "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/search/aggregation/20_terms[4]",
     "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/tasks/list/10_basic[0]",
+    "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/scripts/25_get_script_languages[0]",
+    "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/search/aggregation/360_date_histogram[2]",
+    # fail on 1.0.x
+    "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/search/230_interval_query",
+    "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/search/aggregation/230_composite[21]",
     # fail on 2.x
     "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/cat/nodes/10_basic[1]",
     "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/index/90_unsigned_long[1]",
@@ -91,9 +109,11 @@ SKIP_TESTS = {
     "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/search/aggregation/410_nested_aggs[0]",
     # fail on 3.x (main)
     "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/indices/get_settings/40_number_of_routing_shards[0]",
+    # TODO:  Enable below test once paginated wlm/stats API spec is added  https://github.com/opensearch-project/opensearch-api-specification/issues/913
+    "OpenSearch-main/rest-api-spec/src/main/resources/rest-api-spec/test/wlm_stats/10_basic",
 }
 
-
+# pylint: disable=invalid-name
 OPENSEARCH_VERSION = None
 RUN_ASYNC_REST_API_TESTS = (
     os.environ.get("PYTHON_CONNECTION_CLASS") == "RequestsHttpConnection"
@@ -212,6 +232,27 @@ class YamlRunner:
         for k in args:
             args[k] = self._resolve(args[k])
 
+        # YAML tests may pass 'timeout' as a server-side query parameter
+        # (e.g. "30s"). The client intercepts 'timeout' kwargs as a connection
+        # timeout, which urllib3 rejects if it's a duration string. Parse it
+        # to a numeric value in seconds.
+        if "timeout" in args and isinstance(args["timeout"], str):
+            timeout_str = args["timeout"]
+            match = re.match(r"^(\d+)(s|m|h|d|ms|micros|nanos)?$", timeout_str)
+            if match:
+                val = int(match.group(1))
+                unit = match.group(2) or "ms"
+                multipliers = {
+                    "nanos": 1e-9,
+                    "micros": 1e-6,
+                    "ms": 0.001,
+                    "s": 1,
+                    "m": 60,
+                    "h": 3600,
+                    "d": 86400,
+                }
+                args["timeout"] = val * multipliers.get(unit, 1)
+
         warnings.simplefilter("always", category=OpenSearchWarning)
         with warnings.catch_warnings(record=True) as caught_warnings:
             try:
@@ -258,8 +299,6 @@ class YamlRunner:
         self.last_response = exception.info
 
     def run_skip(self, skip: Any) -> Any:
-        global IMPLEMENTED_FEATURES
-
         if "features" in skip:
             features = skip["features"]
             if not isinstance(features, (tuple, list)):
@@ -324,25 +363,45 @@ class YamlRunner:
 
     def run_match(self, action: Any) -> None:
         for path, expected in action.items():
-            value = self._lookup(path)
             expected = self._resolve(expected)
 
-            if (
-                isinstance(expected, str)
-                and expected.strip().startswith("/")
-                and expected.strip().endswith("/")
-            ):
-                expected = re.compile(expected.strip()[1:-1], re.VERBOSE | re.MULTILINE)
-                assert expected.search(value), f"{value!r} does not match {expected!r}"
+            if expected is None:
+                try:
+                    value = self._lookup(path)
+                except (KeyError, AssertionError):
+                    # Key doesn't exist, which matches None
+                    continue
+                assert value is None, f"Expected None but got {value!r}"
             else:
-                self._assert_match_equals(value, expected)
+                value = self._lookup(path)
+                if (
+                    isinstance(expected, str)
+                    and expected.strip().startswith("/")
+                    and expected.strip().endswith("/")
+                ):
+                    expected = re.compile(
+                        expected.strip()[1:-1], re.VERBOSE | re.MULTILINE
+                    )
+                    assert expected.search(
+                        value
+                    ), f"{value!r} does not match {expected!r}"
+                else:
+                    self._assert_match_equals(value, expected)
 
     def run_contains(self, action: Any) -> None:
         for path, expected in action.items():
             value = self._lookup(path)  # list[dict[str,str]] is returned
             expected = self._resolve(expected)  # dict[str, str]
 
-            if expected not in value:
+            if isinstance(expected, dict):
+                for item in value:
+                    if isinstance(item, dict) and all(
+                        item.get(k) == v for k, v in expected.items()
+                    ):
+                        break
+                else:
+                    raise AssertionError(f"{expected} is not contained by {value}")
+            elif expected not in value:
                 raise AssertionError(f"{expected} is not contained by {value}")
 
     def run_transform_and_set(self, action: Any) -> None:
@@ -422,7 +481,7 @@ def sync_runner(sync_client: Any) -> Any:
     return YamlRunner(sync_client)
 
 
-YAML_TEST_SPECS = []
+YAML_TEST_SPECS: List[Any] = []
 
 client = get_client()
 

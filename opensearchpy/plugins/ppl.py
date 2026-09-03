@@ -27,28 +27,27 @@ class PplClient(NamespacedClient):
     )
     def explain(
         self,
+        *,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Shows how a query is executed against OpenSearch.
+        Returns the execution plan for a PPL query.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg format: A short version of the Accept header (for example,
-            `json`, `yaml`).
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg format: Specifies the response format (JSON, YAML).
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
-        :arg sanitize: Specifies whether to escape special characters in
-            the results. Default is True.
+        :arg sanitize: Whether to escape special characters in the
+            results. Default is True.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
         """
@@ -64,27 +63,26 @@ class PplClient(NamespacedClient):
     )
     def get_stats(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Collect metrics for the plugin within the interval.
+        Retrieves performance metrics for the PPL plugin.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg format: A short version of the Accept header (for example,
-            `json`, `yaml`).
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg format: Specifies the response format (JSON, YAML).
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
-        :arg sanitize: Specifies whether to escape special characters in
-            the results. Default is True.
+        :arg sanitize: Whether to escape special characters in the
+            results. Default is True.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
         """
@@ -97,29 +95,27 @@ class PplClient(NamespacedClient):
     )
     def post_stats(
         self,
+        *,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        By a stats endpoint, you are able to collect metrics for the plugin within the
-        interval.
+        Retrieves filtered performance metrics for the PPL plugin.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg format: A short version of the Accept header (for example,
-            `json`, `yaml`).
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg format: Specifies the response format (JSON, YAML).
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
-        :arg sanitize: Specifies whether to escape special characters in
-            the results. Default is True.
+        :arg sanitize: Whether to escape special characters in the
+            results. Default is True.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
         """
@@ -135,28 +131,27 @@ class PplClient(NamespacedClient):
     )
     def query(
         self,
+        *,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Send a PPL query to the PPL plugin.
+        Executes a PPL query against OpenSearch indexes.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg format: A short version of the Accept header (for example,
-            `json`, `yaml`).
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg format: Specifies the response format (JSON OR YAML).
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
-        :arg sanitize: Specifies whether to escape special characters in
-            the results. Default is True.
+        :arg sanitize: Whether to sanitize special characters in the
+            results. Default is True.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
         """

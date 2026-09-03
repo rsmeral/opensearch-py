@@ -43,6 +43,7 @@ class NodesClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source", "timeout")
     async def reload_secure_settings(
         self,
+        *,
         body: Any = None,
         node_id: Any = None,
         params: Any = None,
@@ -58,19 +59,18 @@ class NodesClient(NamespacedClient):
             target.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
-        :arg timeout: Period to wait for a response. If no response is
-            received before the timeout expires, the request fails and returns an
-            error.
+        :arg timeout: The amount of time to wait for a response. If no
+            response is received before the timeout expires, the request fails and
+            returns an error.
         """
         return await self.transport.perform_request(
             "POST",
@@ -91,6 +91,7 @@ class NodesClient(NamespacedClient):
     )
     async def info(
         self,
+        *,
         node_id: Any = None,
         metric: Any = None,
         node_id_or_metric: Any = None,
@@ -101,8 +102,8 @@ class NodesClient(NamespacedClient):
         Returns information about nodes in the cluster.
 
 
-        :arg node_id: Comma-separated list of node IDs or names used to
-            limit returned information.
+        :arg node_id: A comma-separated list of node IDs or names used
+            to limit returned information.
         :arg metric: Limits the information returned to the specific
             metrics. Supports a comma-separated list, such as `http,ingest`.
         :arg node_id_or_metric: Limits the information returned to a
@@ -110,21 +111,20 @@ class NodesClient(NamespacedClient):
             such as `node1,node2` or `http,ingest`.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg flat_settings: If `true`, returns settings in flat format.
-            Default is false.
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg flat_settings: When `true`, returns settings in flat
+            format. Default is false.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
-        :arg timeout: Period to wait for a response. If no response is
-            received before the timeout expires, the request fails and returns an
-            error.
+        :arg timeout: The amount of time to wait for a response. If no
+            response is received before the timeout expires, the request fails and
+            returns an error.
         """
         return await self.transport.perform_request(
             "GET", _make_path("_nodes", node_id, metric), params=params, headers=headers
@@ -147,6 +147,7 @@ class NodesClient(NamespacedClient):
     )
     async def stats(
         self,
+        *,
         node_id: Any = None,
         metric: Any = None,
         index_metric: Any = None,
@@ -157,42 +158,41 @@ class NodesClient(NamespacedClient):
         Returns statistical information about nodes in the cluster.
 
 
-        :arg node_id: Comma-separated list of node IDs or names used to
-            limit returned information.
+        :arg node_id: A comma-separated list of node IDs or names used
+            to limit returned information.
         :arg metric: Limit the information returned to the specified
-            metrics
+            metrics.
         :arg index_metric: Limit the information returned for indexes
-            metric to the specific index metrics. It can be used only if indexes (or
-            all) metric is specified.
-        :arg completion_fields: Comma-separated list or wildcard
+            metric to the specified index metrics. It can be used only if indexes
+            (or all) metric is specified.
+        :arg completion_fields: A comma-separated list or wildcard
             expressions of fields to include in field data and suggest statistics.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg fielddata_fields: Comma-separated list or wildcard
+        :arg fielddata_fields: A comma-separated list or wildcard
             expressions of fields to include in field data statistics.
-        :arg fields: Comma-separated list or wildcard expressions of
+        :arg fields: A comma-separated list or wildcard expressions of
             fields to include in the statistics.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg groups: Comma-separated list of search groups to include in
-            the search statistics.
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg include_segment_file_sizes: If `true`, the call reports the
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg groups: A comma-separated list of search groups to include
+            in the search statistics.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg include_segment_file_sizes: When `true`,  reports the
             aggregated disk usage of each one of the Lucene index files (only
             applies if segment stats are requested). Default is false.
         :arg level: Indicates whether statistics are aggregated at the
             cluster, index, or shard level. Valid choices are cluster, indices,
             shards.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
-        :arg timeout: Period to wait for a response. If no response is
-            received before the timeout expires, the request fails and returns an
-            error.
+        :arg timeout: The amount of time to wait for a response. If no
+            response is received before the timeout expires, the request fails and
+            returns an error.
         :arg types: A comma-separated list of document types for the
             indexing index metric.
         """
@@ -218,6 +218,7 @@ class NodesClient(NamespacedClient):
     )
     async def hot_threads(
         self,
+        *,
         node_id: Any = None,
         params: Any = None,
         headers: Any = None,
@@ -226,33 +227,35 @@ class NodesClient(NamespacedClient):
         Returns information about hot threads on each node in the cluster.
 
 
-        :arg node_id: Comma-separated list of node IDs or names to limit
-            the returned information; use `_local` to return information from the
-            node you're connecting to, leave empty to get information from all
+        :arg node_id: A comma-separated list of node IDs or names to
+            limit the returned information; use `_local` to return information from
+            the node you're connecting to, leave empty to get information from all
             nodes.
         :arg doc_type: The type to sample. Valid choices are block, cpu,
             wait.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg ignore_idle_threads: Don't show threads that are in known-
-            idle places, such as waiting on a socket select or pulling from an empty
-            task queue. Default is True.
-        :arg interval: The interval for the second sampling of threads.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg ignore_idle_threads: Whether to show threads that are in
+            known-idle places, such as waiting on a socket select or pulling from an
+            empty task queue. Default is True.
+        :arg interval: The time interval between thread stack trace
+            samples.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
-        :arg snapshots: Number of samples of thread stack trace. Default
-            is 10.
+        :arg snapshots: The number of thread stack trace samples to
+            collect. Default is 10.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
-        :arg threads: Specify the number of threads to provide
-            information for. Default is 3.
-        :arg timeout: Operation timeout.
+        :arg threads: The number of threads to provide information for.
+            Default is 3.
+        :arg timeout: The amount of time to wait for a response. If no
+            response is received before the timeout expires, the request fails and
+            returns an error.
         """
         # type is a reserved word so it cannot be used, use doc_type instead
         if "doc_type" in params:
@@ -268,6 +271,7 @@ class NodesClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source", "timeout")
     async def usage(
         self,
+        *,
         node_id: Any = None,
         metric: Any = None,
         params: Any = None,
@@ -286,13 +290,12 @@ class NodesClient(NamespacedClient):
             `rest_actions`.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.

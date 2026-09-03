@@ -25,23 +25,23 @@ class AsynchronousSearchClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def delete(
         self,
+        *,
         id: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Delete asynchronous search.
+        Deletes any responses from an asynchronous search.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -59,23 +59,23 @@ class AsynchronousSearchClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get(
         self,
+        *,
         id: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Get partial responses from asynchronous search.
+        Gets partial responses from an asynchronous search.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -103,22 +103,22 @@ class AsynchronousSearchClient(NamespacedClient):
     )
     def search(
         self,
+        *,
         body: Any = None,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Perform an asynchronous search.
+        Performs an asynchronous search.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
         :arg index: The name of the index to be searched. Can be an
             individual name, a comma-separated list of indexes, or a wildcard
             expression of index names.
@@ -126,17 +126,18 @@ class AsynchronousSearchClient(NamespacedClient):
             the cluster. For example, `2d` means that the results are stored in the
             cluster for 48 hours. The saved search results are deleted after this
             period or if the search is canceled. Note that this includes the query
-            execution time. If the query overruns this time, the process cancels
-            this query automatically.
-        :arg keep_on_completion: Whether you want to save the results in
-            the cluster after the search is complete.
-        :arg pretty: Whether to pretty format the returned JSON
+            execution time. If the query exceeds this amount of time, the process
+            cancels this query automatically.
+        :arg keep_on_completion: Whether to save the results in the
+            cluster after the search is complete. You can examine the stored results
+            at a later time.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
-        :arg wait_for_completion_timeout: The amount of time that you
-            plan to wait for the results. You can poll the remaining results based
-            on an ID. The maximum value is `300s`. Default is `1s`.
+        :arg wait_for_completion_timeout: The amount of time to wait for
+            the results. You can poll the remaining results based on an ID. The
+            maximum value is 300 seconds. Default is `1s`.
         """
         return self.transport.perform_request(
             "POST",
@@ -149,23 +150,23 @@ class AsynchronousSearchClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def stats(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Monitoring of asynchronous searches that are running, completed, and/or
-        persisted.
+        Monitors any asynchronous searches that are `running`, `completed`, or
+        `persisted`.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.

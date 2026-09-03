@@ -22,27 +22,25 @@ from .utils import SKIP_IN_PATH, NamespacedClient, _make_path, query_params
 
 
 class SecurityClient(NamespacedClient):
-    from ._patch import health_check, update_audit_config  # type: ignore
-
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_account_details(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Returns account details for the current user.
+        Returns account information for the current user.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -54,6 +52,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def change_password(
         self,
+        *,
         body: Any,
         params: Any = None,
         headers: Any = None,
@@ -64,13 +63,12 @@ class SecurityClient(NamespacedClient):
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -89,6 +87,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_action_group(
         self,
+        *,
         action_group: Any,
         params: Any = None,
         headers: Any = None,
@@ -100,13 +99,12 @@ class SecurityClient(NamespacedClient):
         :arg action_group: The name of the action group to retrieve.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -126,6 +124,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_action_groups(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
@@ -135,13 +134,12 @@ class SecurityClient(NamespacedClient):
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -156,24 +154,24 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def delete_action_group(
         self,
+        *,
         action_group: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Delete a specified action group.
+        Deletes the specified action group.
 
 
         :arg action_group: The name of the action group to delete.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -193,6 +191,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def create_action_group(
         self,
+        *,
         action_group: Any,
         body: Any,
         params: Any = None,
@@ -206,13 +205,12 @@ class SecurityClient(NamespacedClient):
             replace.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -232,25 +230,25 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def patch_action_group(
         self,
+        *,
         action_group: Any,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Updates individual attributes of an action group.
+        Updates the individual attributes of an action group.
 
 
         :arg action_group: The name of the action group to update.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -270,23 +268,23 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def patch_action_groups(
         self,
+        *,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Creates, updates, or deletes multiple action groups in a single call.
+        Creates, updates, or deletes multiple action groups in a single request.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -305,24 +303,24 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_user(
         self,
+        *,
         username: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Retrieve one internal user.
+        Retrieve information about the specified internal user.
 
 
         :arg username: The name of the user to retrieve.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -340,6 +338,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_users(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
@@ -349,13 +348,12 @@ class SecurityClient(NamespacedClient):
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -370,24 +368,24 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def delete_user(
         self,
+        *,
         username: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Delete the specified user.
+        Deletes the specified internal user.
 
 
         :arg username: The name of the user to delete.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -405,6 +403,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def create_user(
         self,
+        *,
         username: Any,
         body: Any,
         params: Any = None,
@@ -414,16 +413,15 @@ class SecurityClient(NamespacedClient):
         Creates or replaces the specified user.
 
 
-        :arg username: The name of the user to be created.
+        :arg username: The name of the user to create.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -443,25 +441,25 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def patch_user(
         self,
+        *,
         username: Any,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Updates individual attributes of an internal user.
+        Updates individual attributes for an internal user.
 
 
         :arg username: The name of the user to update.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -481,23 +479,23 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def patch_users(
         self,
+        *,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Creates, updates, or deletes multiple internal users in a single call.
+        Creates, updates, or deletes multiple internal users in a single request.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -516,6 +514,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_role(
         self,
+        *,
         role: Any,
         params: Any = None,
         headers: Any = None,
@@ -524,15 +523,15 @@ class SecurityClient(NamespacedClient):
         Retrieves one role.
 
 
+        :arg role: The name of the role to retrieve.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -550,6 +549,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_roles(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
@@ -559,13 +559,12 @@ class SecurityClient(NamespacedClient):
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -577,24 +576,24 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def delete_role(
         self,
+        *,
         role: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Delete the specified role.
+        Deletes the specified role.
 
 
         :arg role: The name of the role to delete.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -612,6 +611,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def create_role(
         self,
+        *,
         role: Any,
         body: Any,
         params: Any = None,
@@ -621,16 +621,15 @@ class SecurityClient(NamespacedClient):
         Creates or replaces the specified role.
 
 
-        :arg role: The name of the role to be created.
+        :arg role: The name of the role to create.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -650,25 +649,25 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def patch_role(
         self,
+        *,
         role: Any,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Updates individual attributes of a role.
+        Updates the individual attributes of a role.
 
 
         :arg role: The name of the role to update.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -688,6 +687,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def patch_roles(
         self,
+        *,
         body: Any,
         params: Any = None,
         headers: Any = None,
@@ -698,13 +698,12 @@ class SecurityClient(NamespacedClient):
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -723,23 +722,24 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_role_mapping(
         self,
+        *,
         role: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Retrieves one role mapping.
+        Retrieves the specified role mapping.
 
 
+        :arg role: The name of the role mapping to retrieve.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -757,6 +757,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_role_mappings(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
@@ -766,13 +767,12 @@ class SecurityClient(NamespacedClient):
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -787,6 +787,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def delete_role_mapping(
         self,
+        *,
         role: Any,
         params: Any = None,
         headers: Any = None,
@@ -795,16 +796,16 @@ class SecurityClient(NamespacedClient):
         Deletes the specified role mapping.
 
 
-        :arg role: The name of the role whose mapping needs to delete.
+        :arg role: The name of the role for which to delete the role's
+            mappings.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -822,6 +823,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def create_role_mapping(
         self,
+        *,
         role: Any,
         body: Any,
         params: Any = None,
@@ -831,16 +833,16 @@ class SecurityClient(NamespacedClient):
         Creates or replaces the specified role mapping.
 
 
-        :arg role: The name of the role to create a role mapping for.
+        :arg role: The name of the role for which to create a role
+            mapping.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -860,25 +862,25 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def patch_role_mapping(
         self,
+        *,
         role: Any,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Updates individual attributes of a role mapping.
+        Updates the individual attributes of a role mapping.
 
 
-        :arg role: The name of the role to update role-mapping for.
+        :arg role: The name of the role to update a role mapping for
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -898,23 +900,23 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def patch_role_mappings(
         self,
+        *,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Creates or updates multiple role mappings in a single call.
+        Creates or updates multiple role mappings in a single request.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -933,24 +935,24 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_tenant(
         self,
+        *,
         tenant: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Retrieves one tenant.
+        Retrieves the specified tenant.
 
 
         :arg tenant: The name of the tenant to retrieve.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -968,6 +970,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_tenants(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
@@ -977,13 +980,12 @@ class SecurityClient(NamespacedClient):
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -995,24 +997,24 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def delete_tenant(
         self,
+        *,
         tenant: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Delete the specified tenant.
+        Deletes the specified tenant.
 
 
         :arg tenant: The name of the tenant to delete.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1030,6 +1032,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def create_tenant(
         self,
+        *,
         tenant: Any,
         body: Any,
         params: Any = None,
@@ -1039,16 +1042,15 @@ class SecurityClient(NamespacedClient):
         Creates or replaces the specified tenant.
 
 
-        :arg tenant: The name of the tenant to be created.
+        :arg tenant: The name of the tenant to create.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1068,25 +1070,25 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def patch_tenant(
         self,
+        *,
         tenant: Any,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Add, delete, or modify a single tenant.
+        Adds, deletes, or modifies a single tenant.
 
 
         :arg tenant: The name of the tenant to update.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1106,23 +1108,23 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def patch_tenants(
         self,
+        *,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Add, delete, or modify multiple tenants in a single call.
+        Adds, deletes, or modifies multiple tenants in a single request.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1141,22 +1143,22 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_configuration(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Returns the current Security plugin configuration in JSON format.
+        Returns the current Security plugin configuration in a JSON format.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1171,24 +1173,24 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def update_configuration(
         self,
+        *,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Adds or updates the existing configuration using the REST API. Only accessible
-        by admins and users with REST API access and only when put or patch is enabled.
+        Updates the settings for an existing security configuration. Requires super
+        admin or REST API permissions.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1207,25 +1209,24 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def patch_configuration(
         self,
+        *,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        A `PATCH` call is used to update the existing configuration using the REST API.
-        Only accessible by admins and users with REST API access and only when put or
-        patch is enabled.
+        Updates the existing security configuration using the REST API. Requires super
+        admin or REST API permissions.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1244,26 +1245,26 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "show_all", "source")
     def get_distinguished_names(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Retrieves distinguished names. Only accessible to super-admins and with rest-
-        api permissions when enabled.
+        Retrieves all node distinguished names. Requires super admin or REST API
+        permissions.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
-        :arg show_all: A Boolean flag to include/exclude static nodes DN
-            from final result.
+        :arg show_all: Whether to include or exclude any static node's
+            DN settings from the final result.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
         """
@@ -1274,6 +1275,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_certificates(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
@@ -1283,13 +1285,12 @@ class SecurityClient(NamespacedClient):
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1301,22 +1302,22 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def reload_transport_certificates(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Reload Transport layer communication certificates.
+        Reloads the transport communication certificates.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1331,22 +1332,22 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def reload_http_certificates(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Reload HTTP layer communication certificates.
+        Reloads the HTTP communication certificates.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1361,22 +1362,22 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def flush_cache(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Flushes the Security plugin user, authentication, and authorization cache.
+        Flushes the Security plugin's user, authentication, and authorization cache.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1388,25 +1389,26 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "mode", "pretty", "source")
     def health(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Checks to see if the Security plugin is up and running.
+        Checks to see if the Security plugin is running.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg mode: A flag to indicate whether service should consider
-            security-plugin's status before returning health response. `strict` mode
-            indicates service should check Security plugin status.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg mode: A flag that determines whether to consider the
+            security status before returning a response for a health query response.
+            For example, `strict` mode indicates service should check the Security
+            plugin status.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1418,6 +1420,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_audit_configuration(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
@@ -1427,13 +1430,12 @@ class SecurityClient(NamespacedClient):
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1445,6 +1447,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def update_audit_configuration(
         self,
+        *,
         body: Any,
         params: Any = None,
         headers: Any = None,
@@ -1455,13 +1458,12 @@ class SecurityClient(NamespacedClient):
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1480,23 +1482,23 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def patch_audit_configuration(
         self,
+        *,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        A PATCH call is used to update specified fields in the audit configuration.
+        Updates the specified fields in the audit configuration.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1515,24 +1517,24 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def patch_distinguished_names(
         self,
+        *,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Bulk update of distinguished names. Only accessible to super-admins and with
-        rest-api permissions when enabled.
+        Bulk updates specified node distinguished names. Requires super admin or REST
+        API permissions.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1559,28 +1561,28 @@ class SecurityClient(NamespacedClient):
     )
     def authinfo(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Returns the authentication information.
+        Returns or updates authentication information for the currently authenticated
+        user.
 
 
-        :arg auth_type: The type of current authentication request.
+        :arg auth_type: The type of the current authentication request.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
-        :arg verbose: Indicates whether a verbose response should be
-            returned.
+        :arg verbose: Whether to return a verbose response.
         """
         return self.transport.perform_request(
             "GET", "/_plugins/_security/authinfo", params=params, headers=headers
@@ -1589,22 +1591,22 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def authtoken(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Returns the authorization token.
+        Returns the authorization token for the current user.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1616,22 +1618,22 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def cache(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Not supported for cache API.
+        Not supported for the Cache API.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1643,23 +1645,23 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def config_upgrade_check(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Check whether or not an upgrade can be performed and what resources can be
-        updated.
+        Checks whether or not an upgrade can be performed and which security resources
+        can be updated.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1674,23 +1676,24 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def config_upgrade_perform(
         self,
+        *,
         body: Any = None,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Helps cluster operator upgrade missing defaults and stale default definitions.
+        Assists the cluster operator with upgrading missing default values and stale
+        default definitions.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1706,24 +1709,24 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def create_allowlist(
         self,
+        *,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Creates or replaces the permitted APIs. Accessible using Super Admin
-        certificate or REST API permission.
+        Creates or replaces APIs permitted for users on the allow list. Requires a
+        super admin certificate or REST API permissions.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1742,24 +1745,24 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def create_update_tenancy_config(
         self,
+        *,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Creates or replaces the multi-tenancy configuration. Only accessible to admins
-        and users with REST API permissions.
+        Creates or replaces the multi-tenancy configuration. Requires super admin or
+        REST API permissions.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1778,6 +1781,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def create_user_legacy(
         self,
+        *,
         username: Any,
         body: Any,
         params: Any = None,
@@ -1787,16 +1791,15 @@ class SecurityClient(NamespacedClient):
         Creates or replaces the specified user. Legacy API.
 
 
-        :arg username: The name of the user to be created.
+        :arg username: The name of the user to create.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1816,26 +1819,26 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def delete_distinguished_name(
         self,
+        *,
         cluster_name: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Deletes all distinguished names in the specified cluster or node allow list.
-        Only accessible to super-admins and with rest-api permissions when enabled.
+        Deletes all distinguished names in the specified cluster or node allowlist.
+        Requires super admin or REST API permissions.
 
 
-        :arg cluster_name: The cluster-name to delete from list of
+        :arg cluster_name: The cluster name to delete from list of
             distinguished names.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1855,6 +1858,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def delete_user_legacy(
         self,
+        *,
         username: Any,
         params: Any = None,
         headers: Any = None,
@@ -1866,13 +1870,12 @@ class SecurityClient(NamespacedClient):
         :arg username: The name of the user to delete.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1890,23 +1893,23 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def generate_obo_token(
         self,
+        *,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Generates On-Behalf-Of token for the current user.
+        Generates a `On-Behalf-Of` token for the current user.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1925,25 +1928,25 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def generate_user_token(
         self,
+        *,
         username: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Generates authorization token for the given user.
+        Generates an authorization token for the specified user.
 
 
-        :arg username: The name of the user for whom an auth token is to
-            be vended.
+        :arg username: The name of the user for whom to issue an
+            authorization token.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1963,6 +1966,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def generate_user_token_legacy(
         self,
+        *,
         username: Any,
         params: Any = None,
         headers: Any = None,
@@ -1971,17 +1975,16 @@ class SecurityClient(NamespacedClient):
         Generates authorization token for the given user. Legacy API. Not Implemented.
 
 
-        :arg username: The name of the user for whom an auth token is to
-            be vended.
+        :arg username: The name of the user for whom to issue an
+            authorization token.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -1999,22 +2002,22 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_allowlist(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Retrieves the current list of allowed API accessible to normal user.
+        Retrieves the current list of allowed APIs accessible to a normal user.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -2026,22 +2029,23 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_dashboards_info(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Retrieves the current security-dashboards plugin configuration.
+        Retrieves the current values for dynamic security settings for OpenSearch
+        Dashboards.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -2053,29 +2057,29 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "show_all", "source")
     def get_distinguished_name(
         self,
+        *,
         cluster_name: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Retrieves distinguished names. Only accessible to super-admins and with rest-
-        api permissions when enabled.
+        Retrieves all node distinguished names. Requires super admin or REST API
+        permissions.
 
 
-        :arg cluster_name: The cluster-name to retrieve nodes DN setting
-            for.
+        :arg cluster_name: The name of the cluster to retrieve that
+            cluster's nodes DN settings.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
-        :arg show_all: A Boolean flag to include/exclude static nodes DN
-            from final result.
+        :arg show_all: Whether to include or exclude any static node's
+            DN settings from the final result.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
         """
@@ -2094,22 +2098,22 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_permissions_info(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Gets the evaluated REST API permissions for the currently logged in user.
+        Retrieves the evaluated REST API permissions for the currently logged in user.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -2124,25 +2128,25 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "show_dn", "source")
     def get_sslinfo(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Retrieves the SSL configuration information.
+        Retrieves information about the SSL configuration.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
-        :arg show_dn: A Boolean flag to indicate whether all domain
-            names should be returned.
+        :arg show_dn: Whether to include all domain names in the
+            response.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
         """
@@ -2153,23 +2157,23 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_tenancy_config(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Retrieves multi-tenancy configuration. Only accessible to admins and users with
-        REST API permissions.
+        Retrieves the multi-tenancy configuration. Requires super admin or REST API
+        permissions.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -2184,6 +2188,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_user_legacy(
         self,
+        *,
         username: Any,
         params: Any = None,
         headers: Any = None,
@@ -2195,13 +2200,12 @@ class SecurityClient(NamespacedClient):
         :arg username: The name of the user to retrieve.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -2219,6 +2223,7 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def get_users_legacy(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
@@ -2228,13 +2233,12 @@ class SecurityClient(NamespacedClient):
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -2246,22 +2250,22 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def migrate(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Migrates security configuration from v6 to v7.
+        Migrates the security configuration from v6 to v7.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -2273,23 +2277,23 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def patch_allowlist(
         self,
+        *,
         body: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Updates the current list of allowed API accessible to normal user.
+        Updates the current list of APIs accessible for users on the allow list.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -2308,26 +2312,27 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def patch_distinguished_name(
         self,
+        *,
         cluster_name: Any,
         body: Any = None,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Updates a distinguished cluster name for a specific cluster. Only accessible to
-        super-admins and with rest-api permissions when enabled.
+        Updates the distinguished cluster name for the specified cluster. Requires
+        super admin or REST API permissions.
 
 
-        :arg cluster_name: The cluster name to update `nodesDn` value.
+        :arg cluster_name: The cluster name to update the `nodesDn`
+            value.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -2348,22 +2353,23 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def post_dashboards_info(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Updates the current security-dashboards plugin configuration.
+        Retrieves the current values for dynamic security settings for OpenSearch
+        Dashboards.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -2375,23 +2381,23 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def tenant_info(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Retrieves the tenant names if any exist. Only accessible to super admins or
-        kibanaserver user.
+        Retrieves the names of current tenants. Requires super admin or `kibanaserver`
+        permissions.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -2403,28 +2409,27 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def update_distinguished_name(
         self,
+        *,
         cluster_name: Any,
         body: Any = None,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Adds or updates the specified distinguished names in the cluster or node allow
-        list. Only accessible to super-admins and with rest-api permissions when
-        enabled.
+        Adds or updates the specified distinguished names in the cluster or node
+        allowlist. Requires super admin or REST API permissions.
 
 
-        :arg cluster_name: The cluster-name to create/update `nodesDn`
-            value for.
+        :arg cluster_name: The name of the cluster containing the
+            `nodesDn` value to create or update.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -2447,6 +2452,7 @@ class SecurityClient(NamespacedClient):
     )
     def validate(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
@@ -2455,17 +2461,16 @@ class SecurityClient(NamespacedClient):
         to v7.
 
 
-        :arg accept_invalid: A Boolean flag to indicate whether invalid
-            v6 configuration should be allowed.
+        :arg accept_invalid: Whether an invalid v6 configuration should
+            be allowed.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -2477,22 +2482,22 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def who_am_i(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Gets the user identity related information for currently logged in user.
+        Gets the identity information for the user currently logged in.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -2504,24 +2509,24 @@ class SecurityClient(NamespacedClient):
     @query_params("error_trace", "filter_path", "human", "pretty", "source")
     def who_am_i_protected(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Gets the user identity related information for currently logged in user. User
-        needs to have access to this endpoint when authorization at REST layer is
-        enabled.
+        Gets the identity information for the user currently logged in. To use this
+        operation, you must have access to this endpoint when authorization at REST
+        layer is enabled.
 
 
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
@@ -2541,6 +2546,7 @@ class SecurityClient(NamespacedClient):
     )
     def get_all_certificates(
         self,
+        *,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
@@ -2548,22 +2554,21 @@ class SecurityClient(NamespacedClient):
         Retrieves the cluster security certificates.
 
 
-        :arg cert_type: The type of certificates (HTTP, TRANSPORT, ALL)
-            to retrieve from all nodes.
+        :arg cert_type: The type of certificates (`HTTP`, `TRANSPORT`,
+            or `ALL`) to retrieve from all nodes.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
-        :arg timeout: The maximum duration, in seconds, to be spent to
-            retrieve certificates from all nodes.
+        :arg timeout: The maximum duration, in seconds, to spend
+            retrieving certificates from all nodes before a timeout.
         """
         return self.transport.perform_request(
             "GET",
@@ -2583,31 +2588,31 @@ class SecurityClient(NamespacedClient):
     )
     def get_node_certificates(
         self,
+        *,
         node_id: Any,
         params: Any = None,
         headers: Any = None,
     ) -> Any:
         """
-        Retrieves the given node's security certificates.
+        Retrieves the specified node's security certificates.
 
 
-        :arg node_id: The full-id of the node to retrieve certificates.
-        :arg cert_type: The type of certificates (HTTP, TRANSPORT, ALL)
-            to retrieve for a node.
+        :arg node_id: The node ID to retrieve certificates for.
+        :arg cert_type: The type of certificates (`HTTP`, `TRANSPORT`,
+            or `ALL`) to retrieve from a node.
         :arg error_trace: Whether to include the stack trace of returned
             errors. Default is false.
-        :arg filter_path: Used to reduce the response. This parameter
-            takes a comma-separated list of filters. It supports using wildcards to
-            match any field or part of a field’s name. You can also exclude fields
-            with "-".
-        :arg human: Whether to return human readable values for
-            statistics. Default is True.
-        :arg pretty: Whether to pretty format the returned JSON
+        :arg filter_path: A comma-separated list of filters used to
+            filter the response. Use wildcards to match any field or part of a
+            field's name. To exclude fields, use `-`.
+        :arg human: Whether to return human-readable values for
+            statistics. Default is false.
+        :arg pretty: Whether to pretty-format the returned JSON
             response. Default is false.
         :arg source: The URL-encoded request definition. Useful for
             libraries that do not accept a request body for non-POST requests.
-        :arg timeout: The maximum duration, in seconds, to be spent to
-            retrieve a node's certificates.
+        :arg timeout: The maximum duration, in seconds, to spend
+            retrieving certificates from all nodes before a timeout.
         """
         if node_id in SKIP_IN_PATH:
             raise ValueError("Empty value passed for a required argument 'node_id'.")

@@ -90,9 +90,13 @@ class TestAsyncSigner:
         ) as mock_aws_request:
             auth = AWSV4SignerAsyncAuth(self.mock_session(), region, service)
             auth("GET", "http://localhost/?foo=bar", headers={"host": "otherhost:443"})
-            mock_aws_request.assert_called_with(
-                method="GET", url="http://otherhost:443/?foo=bar", data=None
-            )
+            mock_aws_request.assert_called_once()
+            call_kwargs = mock_aws_request.call_args[1]
+            assert call_kwargs["method"] == "GET"
+            assert call_kwargs["url"] == "http://otherhost:443/?foo=bar"
+            assert call_kwargs["data"] is None
+            assert "host" in call_kwargs["headers"]
+            assert call_kwargs["headers"]["host"] == "otherhost:443"
 
 
 class TestAsyncSignerWithFrozenCredentials(TestAsyncSigner):
@@ -191,5 +195,5 @@ class TestAsyncSignerWithSpecialCharacters:
             verify_certs=True,
             connection_class=MockConnection,
         )
-        await client.index("index", {"test": "data"}, id=doc_id)
+        await client.index(index="index", body={"test": "data"}, id=doc_id)
         assert signed_url == sent_url, "URLs don't match"

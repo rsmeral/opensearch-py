@@ -7,8 +7,6 @@ jobs:
     strategy:
       matrix:
         entry:
-          - { os: 'ubuntu-latest', python-version: "3.8" }
-          - { os: 'ubuntu-latest', python-version: "3.9" }
           - { os: 'ubuntu-latest', python-version: "3.10" }
           - { os: 'ubuntu-latest', python-version: "3.11" }
           - { os: 'macos-latest', python-version: "3.11" }
@@ -16,15 +14,15 @@ jobs:
           - { os: 'ubuntu-latest', python-version: "3.12" }
           - { os: 'macos-latest', python-version: "3.12" }
           - { os: 'windows-latest', python-version: "3.12" }
-          
+
     name: test (os=${{ matrix.entry.os }}, python=${{ matrix.entry.python-version }})
     continue-on-error: ${{ matrix.entry.experimental || false }}
     runs-on: ${{ matrix.entry.os }}
     steps:
       - name: Checkout Source Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
       - name: Set Up Python - ${{ matrix.entry.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
         with:
           python-version: ${{ matrix.entry.python-version }}
         env:
@@ -37,7 +35,7 @@ jobs:
         run: |
           python -m nox -rs test-${{ matrix.entry.python-version }}
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@75cd11691c0faa626561e295848008c8a7dddffe # v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./junit/opensearch-py-codecov.xml
